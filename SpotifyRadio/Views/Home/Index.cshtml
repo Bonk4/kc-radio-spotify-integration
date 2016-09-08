@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html ng-app="SpotifyRadio" ng-controller="SongsController">
+    <head>
+        <title ng-bind="pageTitle"></title>
+        <link href="~/Content/Site.css" rel="stylesheet" />
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+        @Scripts.Render("~/bundles/SpotifyRadio")
+    </head>
+    <body ng-app="ngAnimate">
+        <div id="header">
+            <ul class="header">
+                <li class="header"><img src="~/Images/hamburger.png" href="#home" class="menu" /></li>
+                <li class="header"><a href="/#" ng-click="switchSongs('Alternative')" class="header">96.5 - The Buzz</a></li>
+                <li class="header"><a href="/#" ng-click="switchSongs('Rock')" class="header">98.9 - The Rock!</a></li>
+                <li style="float:right" class="header"><a class="active header" onclick="alert('soon brother')">Login</a></li>
+            </ul>
+        </div>
+        
+        <div ng-view></div>
+
+    </body>
+</html>

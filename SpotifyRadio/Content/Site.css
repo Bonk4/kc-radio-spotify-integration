@@ -1,0 +1,142 @@
+﻿/* header */
+ul.header {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    height: 50px;
+    width: 100%;
+}
+
+li.header {
+    float: left;
+}
+
+li.header a.header {
+    display: block;
+    font-family: sans-serif;
+    color: #A5DA91;
+    background-color: #333;
+
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    height: 50px;
+    margin:auto;
+}
+
+li a:hover:not(.active).header {
+    background-color: #4A9130;
+}
+
+.active.header {
+    background-color: #4A9130;
+}
+
+img.menu {
+    height: 40px;
+    width: 40px;
+    position: center relative;
+}
+
+/* loading animations */
+div.loading-image {
+    transition: all linear 0.5s;
+}
+div.ng-hide {
+    height: 0;
+}
+div.ng-show {
+    transition: all linear 0.5s;
+}
+
+/* song list */
+body {
+    background-color: #A5DA91;
+}
+
+.songHeader {
+    font-family: sans-serif;
+    font-size: 200%;
+    color: #144900;
+    text-align: center;
+
+    padding-top: 10px;
+}
+
+.song {
+    width: 700px;
+    height: 100px;
+    margin: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    transition: all linear 0.5s;
+}
+
+#albumart {
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+#songinfo {
+    width: 500px;
+    float: left;
+    height: 100px;
+    background-color: #4A9130;
+}
+#addbutton {
+    background-image: url('../Images/plus-icon.png');
+    background-size: 100px 100px;
+    background-repeat: no-repeat;
+    background-color: #4A9130;
+    background-position: right;
+    
+    height: 100px;
+    width: 100px;
+    float: left;
+}
+
+#artist {
+    font-family: sans-serif;
+    font-size: 210%;
+    font-weight: 700;
+    padding-left: 10px;
+    padding-top: 10px;
+    margin: 0;
+    white-space: nowrap;
+    color: #A5DA91;
+}
+#track {
+    font-family: Gadugi;
+    font-size: 80%;
+    padding-left: 10px;
+    margin: 0;
+    color: #A5DA91;
+}
+img.album {
+    background-image: url('../Images/spotify-logo.jpg');
+    background-size: 100px 100px;
+    background-repeat: no-repeat;
+    background-color: grey;
+
+    max-width:100px;
+    max-height:100px;
+    height: 100px;
+    width: 100px;
+    display: block;
+}
+img.spinner {
+    position: absolute;
+    left: 50%;
+    height: 100px;
+    width: 100px;
+    margin-left: -50px;
+}
+
+.menudemoBasicUsage .md-menu-demo {
+  padding: 24px; }
+
+.menudemoBasicUsage .menu-demo-container {
+  min-height: 200px; }
