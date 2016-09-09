@@ -2,27 +2,44 @@
 
 SpotifyRadio.controller('SongsController', function ($scope, $http) {
     $scope.pageTitle = "KC Radio Spotify Integration";
+    $scope.loading = true;
 
-    $scope.switchSongs = function (genre) {
+    $http({
+            method: 'GET',
+            url: 'api/Stations'
+        })
+        .success(function (data, status, headers, config) {
+            $scope.stations = data;
+            $scope.errorMessage = false;
+
+            $scope.switchSongs($scope.stations[0].Name, $scope.stations[0].Id)
+        })
+        
+        //todo: add better error handling
+        .error(function () {
+            $scope.songs = {
+                'Artist': 'Couldnt find local stations.  Try again in a bit.',
+                'Track': 'Error...',
+                'Art': '',
+                'SpotifyId': ''
+            };
+            $scope.errorMessage = true;
+        })
+        .finally(function () {
+            //$scope.loading = false;
+        });
+
+    $scope.switchSongs = function (stationName, stationId) {
         $scope.loading = true;
+        $scope.currentStation = stationName;
+
         $http({
             method: 'GET',
-            url: 'api/' + genre
+            url: 'api/Songs?id=' + stationId
         })
             .success(function (data, status, headers, config) {
                 $scope.songs = data;
                 $scope.errorMessage = false;
-                
-                switch (genre.toLowerCase()) {
-                    case "alternative":
-                        $scope.station = '96.5 - The Buzz';
-                        break;
-                    case "rock":
-                        $scope.station = '98.9 - The Rock!';
-                        break;
-                    default:
-                        $scope.station = genre;
-                }
             })
 
             //todo: add better error handling
@@ -36,13 +53,12 @@ SpotifyRadio.controller('SongsController', function ($scope, $http) {
                 $scope.errorMessage = true;
             })
             .finally(function () {
-                // Hide loading spinner whether our call succeeded or failed.
                 $scope.loading = false;
             });
     };
 
-    if ($scope.songs == null) {
-        $scope.switchSongs('Rock');
+    if($scope.stations != null) {
+        $scope.switchSongs($scope.stations[0].Name, $scope.stations[0].Id);
     }
 });
 
@@ -54,14 +70,12 @@ SpotifyRadio.controller('SongsController', function ($scope, $http) {
 var configFunction = function ($routeProvider) {
     $routeProvider
         .when('/', {
-            controller: 'SongsController',
             templateUrl: 'Home/Songs'
         })
         .when('/test', {
             controller: 'MenuController',
             templateUrl: 'Home/Menu'
-        })
-    ;
+        });
         
     $routeProvider.otherwise({ redirectTo: "/" });
 }

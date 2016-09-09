@@ -208,6 +208,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Objects\RadioSong.cs" />
+    <Compile Include="Objects\RadioStation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scrapers\RadioWebScraper.cs" />
     <Compile Include="Startup.cs" />
@@ -1038,7 +1039,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\RoutesDemo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

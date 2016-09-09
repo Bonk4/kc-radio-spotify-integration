@@ -12,14 +12,26 @@
     <body ng-app="ngAnimate">
         <div id="header">
             <ul class="header">
-                <li class="header"><img src="~/Images/hamburger.png" href="#home" class="menu" /></li>
-                <li class="header"><a href="/#" ng-click="switchSongs('Alternative')" class="header">96.5 - The Buzz</a></li>
-                <li class="header"><a href="/#" ng-click="switchSongs('Rock')" class="header">98.9 - The Rock!</a></li>
+                <!-- add this back at some point -->
+                <!--<li class="header"><img src="~/Images/hamburger.png" href="#home" class="menu" /></li>-->
+
+                <!--<li class="header"><a href="/#" ng-click="switchSongs('Alternative')" class="header">96.5 - The Buzz</a></li>
+                <li class="header"><a href="/#" ng-click="switchSongs('Rock')" class="header">98.9 - The Rock!</a></li>-->
+
+                <li ng-repeat="station in stations" class="header"><a href="/#" ng-click="switchSongs(station.Name, station.Id)" class="header">{{station.Name}}</a></li>
+
                 <li style="float:right" class="header"><a class="active header" onclick="alert('soon brother')">Login</a></li>
             </ul>
         </div>
         
         <div ng-view></div>
+
+        <div class="footer">
+            <div class="container">
+                <p class="text-muted">Powered by TuneGenie and Spotify.</p>
+
+            </div>
+        </div>
 
     </body>
 </html>

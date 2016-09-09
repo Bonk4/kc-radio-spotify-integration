@@ -1,4 +1,5 @@
-﻿<div class="songHeader" ng-hide="errorMessage && loading">Songs Playing on {{station}}:</div>
+﻿<div class="songHeader" ng-hide="!loading">Searching for songs playing on {{currentStation}}...</div>
+<div class="songHeader" ng-hide="errorMessage || loading">Songs Playing on {{currentStation}}:</div>
 <div class="songHeader" ng-hide="!errorMessage">There was an error retrieving recently played songs.  Try reloading.</div>
 
 <div id="loading-container">
