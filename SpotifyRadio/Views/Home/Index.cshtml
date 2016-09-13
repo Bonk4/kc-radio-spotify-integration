@@ -10,6 +10,7 @@
     <link href="~/Content/Footer.css" rel="stylesheet" />
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-cookies.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
     @Scripts.Render("~/bundles/SpotifyRadio")
@@ -32,7 +33,7 @@
                             {{station.Name}}
                         </a>
                         <label class="switch">
-                            <input type="checkbox" ng-model="station.favorite">
+                            <input type="checkbox" ng-model="station.favorite" ng-checked="station.favorite" ng-change="saveFavorite(station.favorite)">
                             <div class="slider"></div>
                         </label>
                     </div>
@@ -43,12 +44,16 @@
                     {{station.Name}}
                 </a>
             </li>
-            <li style="float:right" class="active header" ng-hide="loggedin"><a class="active" href="/callback" ng-click="login2()">Login</a></li>
+            <li style="float:right" class="active header" ng-hide="loggedin"><a class="active" href="home/login">Login</a></li>
             <li style="float:right" class="active header" ng-hide="!loggedin"><a class="active" href="/#">{{username}}</a></li>
         </ul>
     </div>
 
     <div ng-style="containerStyle" ng-view></div>
+
+    <div>
+        <input type="hidden" id="code" value="@Html.Raw(ViewBag.code)"/>
+    </div>
 
     <div class="footer">
         <ul class="footer">

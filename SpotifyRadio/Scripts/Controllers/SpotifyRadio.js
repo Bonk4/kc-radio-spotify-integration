@@ -1,9 +1,40 @@
-﻿var SpotifyRadio = angular.module('SpotifyRadio', ['ngRoute', 'ngAnimate']);
+﻿var SpotifyRadio = angular.module('SpotifyRadio', ['ngRoute', 'ngAnimate', 'ngCookies']);
 
-SpotifyRadio.controller('SongsController', function ($scope, $http) {
+SpotifyRadio.controller('SongsController', function ($scope, $http, $cookies, $cookieStore) {
     $scope.pageTitle = "KC Radio Spotify Integration";
-
-    $scope.loggedin = false;
+    
+    if (document.getElementById('code').value) {
+        $scope.code = document.getElementById('code').value;
+        $http({
+            method: 'POST',
+            url: 'https://accounts.spotify.com/api/token',
+            data: { grant_type: "authorization_code", code: $scope.code, redirect_uri: "http://localhost:27784/" }
+        })
+        .success(function (data, status, headers, config) {
+            $scope.access_token = data.access_token;
+            $scope.refresh_token = data.refresh_token;
+            $http({
+                method: 'GET',
+                url: '',
+                headers: {'Authorization': 'Bearer ' + $scope.access_token}
+            })
+            .success(function (data, statis, headers, config) {
+                $scope.username = data.display_name;
+                $scope.loggedin = true;
+            })
+            .error(function () {
+                alert("There was an error authenticating with Spotify.");
+                $scope.loggedin = false;
+            });
+        })
+        .error(function () {
+            alert("There was an error authenticating with Spotify.");
+            $scope.loggedin = false;
+        });
+    }
+    else {
+        $scope.loggedin = false;
+    }
 
     $scope.isLoading = function (bool) {
         if (bool) {
@@ -148,6 +179,10 @@ SpotifyRadio.controller('SongsController', function ($scope, $http) {
             url: 'https://accounts.spotify.com/authorize?' + toQueryString(params)
         });
     };
+
+    $scope.saveFavorite = function (favorite) {
+        //save favorite to cookies
+    };
 });
 
 //SpotifyRadio.controller('MenuController', function MyCtrl($scope) {
@@ -159,6 +194,9 @@ var configFunction = function ($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'Home/Songs'
+        })
+        .when('/login', {
+            templateUrl: 'Home/Login'
         })
         .when('/callback/', {
             templateUrl: 'Home/Callback'

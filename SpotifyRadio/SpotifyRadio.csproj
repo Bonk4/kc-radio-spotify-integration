@@ -210,6 +210,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Objects\RadioSong.cs" />
     <Compile Include="Objects\RadioStation.cs" />
+    <Compile Include="Objects\TokenRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scrapers\RadioWebScraper.cs" />
     <Compile Include="Startup.cs" />
@@ -217,6 +218,11 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Dropdown.css" />
+    <Content Include="Content\Footer.css" />
+    <Content Include="Content\Header.css" />
+    <Content Include="Content\Loading.css" />
+    <Content Include="Content\Sliders.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
