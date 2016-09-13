@@ -3,6 +3,11 @@
 <head>
     <title ng-bind="pageTitle"></title>
     <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/Header.css" rel="stylesheet" />
+    <link href="~/Content/Dropdown.css" rel="stylesheet" />
+    <link href="~/Content/Loading.css" rel="stylesheet" />
+    <link href="~/Content/Sliders.css" rel="stylesheet" />
+    <link href="~/Content/Footer.css" rel="stylesheet" />
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js"></script>
@@ -13,15 +18,30 @@
     <div class="header">
         <ul class="header">
             <!--<li class="header"><img src="~/Images/hamburger.png" href="/#" class="menu" /></li>-->
-            <!-- todo: update this piece to display favorite stations -->
-            <!--<li ng-repeat="station in stations" class="header"><a href="/#" ng-click="switchSongs(station.Name, station.Id)" class="header">{{station.Name}}</a></li>-->
             <li class="dropdown">
                 <a href="#" class="dropbtn">
                     <img src="~/Images/hamburger.png" href="/#" class="menu" />
                 </a>
                 <div class="dropdown-content">
-                    <a ng-repeat="station in stations" href="#" class="header" ng-click="switchSongs(station.Name, station.Id)">{{station.Name}}</a>
+                    <div class="dropdown-item">
+                        <div class="header" id="stationHeader">Station</div>
+                        <div class="header" id="favTitle">Fav</div>
+                    </div>
+                    <div class="dropdown-item" ng-repeat="station in stations">
+                        <a href="#" class="header" ng-click="switchSongs(station.Name, station.Id)">
+                            {{station.Name}}
+                        </a>
+                        <label class="switch">
+                            <input type="checkbox" ng-model="station.favorite">
+                            <div class="slider"></div>
+                        </label>
+                    </div>
                 </div>
+            </li>
+            <li ng-repeat="station in stations" class="header" ng-show="station.favorite">
+                <a href="/#" ng-click="switchSongs(station.Name, station.Id)" class="header">
+                    {{station.Name}}
+                </a>
             </li>
             <li style="float:right" class="active header" ng-hide="loggedin"><a class="active" href="/callback" ng-click="login2()">Login</a></li>
             <li style="float:right" class="active header" ng-hide="!loggedin"><a class="active" href="/#">{{username}}</a></li>

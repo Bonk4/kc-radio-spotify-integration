@@ -1,0 +1,20 @@
+﻿/* footer */
+ul.footer {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+li.about {
+    float: right;
+    display: block;
+    font-family: sans-serif;
+    color: #A5DA91;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
