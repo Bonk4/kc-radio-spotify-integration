@@ -3,6 +3,7 @@
     <head>
         <title ng-bind="pageTitle"></title>
         <link href="~/Content/Site.css" rel="stylesheet" />
+        <link rel="icon" href="~/Images/favicon.ico" type="image/x-icon" />
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js"></script>
@@ -13,25 +14,27 @@
         <div id="header">
             <ul class="header">
                 <!-- add this back at some point -->
-                <!--<li class="header"><img src="~/Images/hamburger.png" href="#home" class="menu" /></li>-->
+                <li class="header dropdown"><a href="#home" class="dropbtn">
+                    <img src="~/Images/music-icon.png" class="menu" />
+                        <div class="dropdown-content">
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                        </div>
+                    </a>
+                </li>
 
                 <!--<li class="header"><a href="/#" ng-click="switchSongs('Alternative')" class="header">96.5 - The Buzz</a></li>
                 <li class="header"><a href="/#" ng-click="switchSongs('Rock')" class="header">98.9 - The Rock!</a></li>-->
 
                 <li ng-repeat="station in stations" class="header"><a href="/#" ng-click="switchSongs(station.Name, station.Id)" class="header">{{station.Name}}</a></li>
 
-                <li style="float:right" class="header"><a class="active header" onclick="alert('soon brother')">Login</a></li>
+                <li style="float:right" class="header"><a href="/#" class="active header" onclick="alert('soon brother')">Login</a></li>
             </ul>
         </div>
         
-        <div ng-view></div>
+        <div id="content" ng-view></div>
 
-        <div class="footer">
-            <div class="container">
-                <p class="text-muted">Powered by TuneGenie and Spotify.</p>
-
-            </div>
-        </div>
-
+        <div class="footer"><span class="footerContent">Powered by TuneGenie and Spotify.</span></div>
     </body>
 </html>
