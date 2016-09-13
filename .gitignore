@@ -1,2 +1,3 @@
 packages/
-SpotifyRadio/bin
+bin/
+obj/

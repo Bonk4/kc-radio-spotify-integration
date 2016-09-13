@@ -1,11 +1,5 @@
 ﻿/* header */
-body {
-    margin:0;
-}
-
-ul {
-    font-family: sans-serif;
-    font-weight: bold;
+ul.header {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -14,7 +8,6 @@ ul {
     position: fixed;
     top: 0;
     width: 100%;
-    height: 45px;
 }
 
 li {
@@ -23,6 +16,7 @@ li {
 
 li a {
     display: block;
+    font-family: sans-serif;
     color: #A5DA91;
     text-align: center;
     padding: 14px 16px;
@@ -37,94 +31,47 @@ li a:hover:not(.active) {
     background-color: #4A9130;
 }
 
-.menu {
-    height: 25px;
-    width: 25px;
-    vertical-align:middle;
-    margin: 0 auto;
+img.menu {
+    height: 40px;
+    width: 40px;
+    padding: 0px 5px;
+    position: center relative;
 }
 
-li.dropdown {
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* body */
-#content {
-    padding:50px;
+a:hover.active {
+    background-color: #111;
 }
 
 /* footer */
-.footer {
-    font-family:sans-serif;
-    float: right;
+ul.footer {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
     position: fixed;
     bottom: 0;
     width: 100%;
-    text-align:center;
-    /* Set the fixed height of the footer here */
-    height: 50px;
-    background-color: #333;
-    color: #A5DA91;
+}
+li.about {
+    float: right;
     display: block;
-    text-align: right;
-}
-
-.footerContent {
-    display:block;
+    font-family: sans-serif;
+    color: #A5DA91;
+    text-align: center;
     padding: 14px 16px;
+    text-decoration: none;
 }
 
-.container {
-  width: auto;
-  max-width: 680px;
-  padding: 0 15px;
-}
-.container .text-muted {
-  margin: 20px 0;
-}
-
-/* loading animations */
-div.loading-image {
-    transition: all linear 0.5s;
-}
-div.ng-hide {
-    height: 0;
-}
-div.ng-show {
-    transition: all linear 0.5s;
+/* body */
+div.content {
+    padding: 60px;
 }
 
 /* song list */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
     background-color: #A5DA91;
-    margin-bottom: 60px;
+    margin: 0;
 }
 
 .songHeader {
@@ -152,10 +99,15 @@ body {
     float: left;
 }
 #songinfo {
+    display: inline-block;
     width: 500px;
     float: left;
     height: 100px;
     background-color: #4A9130;
+
+    white-space: nowrap;
+    overflow:hidden !important;
+    
 }
 #addbutton {
     background-image: url('../Images/plus-icon.png');
@@ -169,7 +121,7 @@ body {
     float: left;
 }
 
-#artist {
+#track {
     font-family: sans-serif;
     font-size: 210%;
     font-weight: 700;
@@ -178,13 +130,17 @@ body {
     margin: 0;
     white-space: nowrap;
     color: #A5DA91;
+    overflow:hidden !important;
+    text-overflow: ellipsis;
 }
-#track {
+#artist {
     font-family: Gadugi;
     font-size: 80%;
     padding-left: 10px;
     margin: 0;
     color: #A5DA91;
+    overflow:hidden !important;
+    text-overflow: ellipsis;
 }
 img.album {
     background-image: url('../Images/spotify-logo.jpg');
@@ -198,16 +154,40 @@ img.album {
     width: 100px;
     display: block;
 }
+
+/* loading animations */
+div.loading-image {
+    transition: all linear 0.5s;
+}
+
 img.spinner {
     position: absolute;
     left: 50%;
-    height: 100px;
-    width: 100px;
-    margin-left: -50px;
+    top: 25%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
 }
 
-.menudemoBasicUsage .md-menu-demo {
-  padding: 24px; }
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
 
-.menudemoBasicUsage .menu-demo-container {
-  min-height: 200px; }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+div.ng-hide {
+    height: 0;
+}
+
+div.ng-show {
+    transition: all linear 0.5s;
+}
