@@ -3,7 +3,6 @@
 SpotifyRadio.controller('SongsController', function ($scope, $http) {
     $scope.pageTitle = "KC Radio Spotify Integration";
 
-    $scope.isLoading(true);
     $scope.loggedin = false;
 
     $scope.isLoading = function (bool) {
@@ -18,6 +17,8 @@ SpotifyRadio.controller('SongsController', function ($scope, $http) {
             $scope.containerStyle = { "opacity": "1" };
         }
     };
+
+    $scope.isLoading(true);
 
     $http({
             method: 'GET',
@@ -59,12 +60,12 @@ SpotifyRadio.controller('SongsController', function ($scope, $http) {
 
             //todo: add better error handling
             .error(function () {
-                $scope.songs = {
+                $scope.songs = [{
                     'Artist': 'Couldnt load songs from web source.  Try again in a bit.',
                     'Track': 'Error...',
                     'Art': '',
                     'SpotifyId': ''
-                };
+                }];
                 $scope.errorMessage = true;
             })
             .finally(function () {

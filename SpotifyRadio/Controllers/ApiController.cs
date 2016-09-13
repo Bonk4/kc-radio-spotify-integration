@@ -36,12 +36,6 @@ namespace SpotifyRadio.Controllers
         [HttpGet]
         public JsonResult Songs(int id)
         {
-            var test = _stations.Max(x => x.Id);
-
-            if (id > _stations.Max(x => x.Id))
-            {
-                throw new Exception("Invalid station ID.");
-            }
             var scraper = new RadioWebScraper();
 
             var songs = scraper.GetSongs(_stations.First(x => x.Id == id).Url);

@@ -3,7 +3,7 @@
 <div class="songHeader" ng-hide="!errorMessage">There was an error retrieving recently played songs.  Try reloading.</div>
 
 <div id="loading-container">
-    <img class="spinner" src="~/Images/loading.gif" ng-hide="!loading" />
+    <img class="spinner" src="~/Images/loading2.png" ng-hide="!loading" />
 </div>
 
 <div id="songscontainer">
@@ -11,8 +11,8 @@
     <div class="song" ng-repeat="song in songs" ng-hide="loading">
         <div id="albumart"><img class="album" ng-src="{{song.Art}}" /></div>
         <div id="songinfo">
-            <p id="artist">{{song.Track}}</p>
-            <p id="track">{{song.Artist}}</p>
+            <p id="track">{{song.Track}}</p>
+            <p id="artist">{{song.Artist}}</p>
         </div>
         <div id="addbutton"></div>
     </div>

@@ -74,6 +74,15 @@ body {
     margin: 0;
 }
 
+html {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#content {
+    padding: 50px;
+}
+
 .songHeader {
     font-family: sans-serif;
     font-size: 200%;
@@ -135,7 +144,7 @@ body {
 }
 #artist {
     font-family: Gadugi;
-    font-size: 80%;
+    font-size: 90%;
     padding-left: 10px;
     margin: 0;
     color: #A5DA91;

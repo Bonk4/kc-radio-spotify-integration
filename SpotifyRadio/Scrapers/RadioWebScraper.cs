@@ -66,10 +66,7 @@ namespace SpotifyRadio.Scrapers
 
                 var artist = string.Empty;
                 if (artistElement != null)
-                    artist = artistElement.InnerText.ToString().TrimEnd()
-                        .Replace("&#39;", @"'")
-                        .Replace("&amp;", @"&")
-                        .Replace("&#38", "&"); ;
+                    artist = artistElement.InnerText.ToString();
 
                 if (!string.IsNullOrEmpty(artist) && !string.IsNullOrEmpty(track))
                     results.Add(new RadioSong() { Artist = artist, Track = track, Art = string.Empty, SpotifyId = string.Empty });
@@ -112,10 +109,14 @@ namespace SpotifyRadio.Scrapers
 
                         var art = (string)data["tracks"]["items"][0]["album"]["images"][0]["url"];
                         song.Art = art;
+
+                        song.Track = WebUtility.HtmlDecode(song.Track);
+                        song.Artist = WebUtility.HtmlDecode(song.Artist);
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine("Couldn't get ID or album art for:\t{0} - {1}.\nError:{2}", song.Artist, song.Track, ex.Message);
+                        song.SpotifyId = null;
                     }
                 }
                 catch (Exception ex)
@@ -125,7 +126,7 @@ namespace SpotifyRadio.Scrapers
                 }
             }
 
-            return songs;
+            return songs.Where(x => x.SpotifyId != null).ToList();
         }
     }
 }
