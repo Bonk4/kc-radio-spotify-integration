@@ -3,7 +3,6 @@ ul.header {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
     background-color: #333;
     position: fixed;
     top: 0;
@@ -19,12 +18,13 @@ li a {
     font-family: sans-serif;
     color: #A5DA91;
     text-align: center;
-    padding: 14px 16px;
+    padding: 16px 16px;
     text-decoration: none;
 }
 
 li a:hover:not(.active) {
     background-color: #4A9130;
+    color: #A5DA91;
 }
 
 .active {
@@ -35,6 +35,7 @@ img.menu {
     height: 40px;
     width: 40px;
     padding: 0px 5px;
+    margin-top: 5px;
     position: center relative;
 }
 
@@ -42,6 +43,40 @@ a:hover.active {
     background-color: #111;
 }
 
+/* dropdown */
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: grey;
+    color: white;
+    min-width: 160px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 0px 0px;
+    text-decoration: none;
+}
 /* footer */
 ul.footer {
     list-style-type: none;

@@ -12,8 +12,17 @@
 <body ng-app="ngAnimate">
     <div class="header">
         <ul class="header">
-            <li class="header"><img src="~/Images/hamburger.png" href="/#" class="menu" /></li>
-            <li ng-repeat="station in stations" class="header"><a href="/#" ng-click="switchSongs(station.Name, station.Id)" class="header">{{station.Name}}</a></li>
+            <!--<li class="header"><img src="~/Images/hamburger.png" href="/#" class="menu" /></li>-->
+            <!-- todo: update this piece to display favorite stations -->
+            <!--<li ng-repeat="station in stations" class="header"><a href="/#" ng-click="switchSongs(station.Name, station.Id)" class="header">{{station.Name}}</a></li>-->
+            <li class="dropdown">
+                <a href="#" class="dropbtn">
+                    <img src="~/Images/hamburger.png" href="/#" class="menu" />
+                </a>
+                <div class="dropdown-content">
+                    <a ng-repeat="station in stations" href="#" class="header" ng-click="switchSongs(station.Name, station.Id)">{{station.Name}}</a>
+                </div>
+            </li>
             <li style="float:right" class="active header" ng-hide="loggedin"><a class="active" href="/callback" ng-click="login2()">Login</a></li>
             <li style="float:right" class="active header" ng-hide="!loggedin"><a class="active" href="/#">{{username}}</a></li>
         </ul>
