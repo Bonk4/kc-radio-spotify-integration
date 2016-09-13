@@ -11,7 +11,7 @@ SpotifyRadio.controller('SongsController', function ($scope, $http) {
 
             $scope.containerStyle = { "opacity": "0.5" };
         }
-        if (!bool) {
+        else {
             $scope.loading = false;
 
             $scope.containerStyle = { "opacity": "1" };
@@ -42,7 +42,7 @@ SpotifyRadio.controller('SongsController', function ($scope, $http) {
             $scope.errorMessage = true;
         })
         .finally(function () {
-            $scope.isLoading(false);
+            //$scope.isLoading(false);
         });
 
     $scope.switchSongs = function (stationName, stationId) {

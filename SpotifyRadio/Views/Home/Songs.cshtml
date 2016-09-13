@@ -1,10 +1,8 @@
-﻿<div class="songHeader" ng-hide="!loading">Searching for songs playing on {{currentStation}}...</div>
+﻿<div class="songHeader" ng-hide="!loading">Loading songs from {{currentStation}}...</div>
 <div class="songHeader" ng-hide="errorMessage || loading">Songs Playing on {{currentStation}}:</div>
 <div class="songHeader" ng-hide="!errorMessage">There was an error retrieving recently played songs.  Try reloading.</div>
 
-<div id="loading-container">
-    <img class="spinner" src="~/Images/loading2.png" ng-hide="!loading" />
-</div>
+<img class="spinner" src="~/Images/loading2.png" ng-hide="!loading" />
 
 <div id="songscontainer">
 
