@@ -2,6 +2,8 @@
 <html ng-app="SpotifyRadio" ng-controller="SongsController">
 <head>
     <title ng-bind="pageTitle"></title>
+    <link rel="icon" type="image/svg" href="~/Images/favicon.ico" />
+
     <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/Header.css" rel="stylesheet" />
     <link href="~/Content/Dropdown.css" rel="stylesheet" />
@@ -44,7 +46,7 @@
                     {{station.Name}}
                 </a>
             </li>
-            <li style="float:right" class="active header" ng-hide="loggedin"><a class="active" href="home/login">Login</a></li>
+            <li style="float:right" class="active header" ng-hide="loggedin"><a class="active" href="home/login">Login To Spotify</a></li>
             <li style="float:right" class="active header" ng-hide="!loggedin"><a class="active" href="/#">{{username}}</a></li>
         </ul>
     </div>
@@ -52,7 +54,7 @@
     <div ng-style="containerStyle" ng-view></div>
 
     <div>
-        <input type="hidden" id="code" value="@Html.Raw(ViewBag.code)"/>
+        <input type="hidden" id="access_token" value="@Html.Raw(ViewBag.access_token)"/>
     </div>
 
     <div class="footer">

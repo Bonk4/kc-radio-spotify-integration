@@ -253,3 +253,5 @@ C:\Code\Test\SpotifyRadio-Git\kc-radio-spotify-integration\SpotifyRadio\bin\Micr
 C:\Code\Test\SpotifyRadio-Git\kc-radio-spotify-integration\SpotifyRadio\obj\Debug\SpotifyRadio.csprojResolveAssemblyReference.cache
 C:\Code\Test\SpotifyRadio-Git\kc-radio-spotify-integration\SpotifyRadio\obj\Debug\SpotifyRadio.dll
 C:\Code\Test\SpotifyRadio-Git\kc-radio-spotify-integration\SpotifyRadio\obj\Debug\SpotifyRadio.pdb
+C:\Code\Test\SpotifyRadio-Git\kc-radio-spotify-integration\SpotifyRadio\bin\SpotifyAPI.dll
+C:\Code\Test\SpotifyRadio-Git\kc-radio-spotify-integration\SpotifyRadio\bin\SpotifyAPI.xml

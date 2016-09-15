@@ -1,39 +1,51 @@
 ﻿var SpotifyRadio = angular.module('SpotifyRadio', ['ngRoute', 'ngAnimate', 'ngCookies']);
 
-SpotifyRadio.controller('SongsController', function ($scope, $http, $cookies, $cookieStore) {
+SpotifyRadio.controller('SongsController', function ($scope, $http, $cookies, $cookieStore, $location, $window, $routeParams) {
     $scope.pageTitle = "KC Radio Spotify Integration";
-    
-    if (document.getElementById('code').value) {
-        $scope.code = document.getElementById('code').value;
-        $http({
-            method: 'POST',
-            url: 'https://accounts.spotify.com/api/token',
-            data: { grant_type: "authorization_code", code: $scope.code, redirect_uri: "http://localhost:27784/" }
-        })
-        .success(function (data, status, headers, config) {
-            $scope.access_token = data.access_token;
-            $scope.refresh_token = data.refresh_token;
+
+    var hash = $location.url().replace('/', '');
+
+    if (hash) {
+        $scope.access_token = hash.split('&').filter(function (arg) {
+            return arg.includes("access_token");
+        })[0].split('=')[1];
+
+        $scope.message = $scope.access_token;
+        if ($scope.access_token) {
+            $scope.headers =  { 'Authorization': 'Bearer ' + $scope.access_token };
             $http({
                 method: 'GET',
-                url: '',
-                headers: {'Authorization': 'Bearer ' + $scope.access_token}
+                url: 'https://api.spotify.com/v1/me',
+                headers: $scope.headers
             })
-            .success(function (data, statis, headers, config) {
+            .success(function (data, status, headers, config) {
                 $scope.username = data.display_name;
                 $scope.loggedin = true;
+
+                //get playlists
+                $http({
+                    method: 'GET',
+                    url: 'https://api.spotify.com/v1/me/playlists',
+                    headers: $scope.headers
+                })
+                .success(function (data, status, headers, config) {
+                    $scope.playlists = data.items;
+                })
+                .error(function () {
+                    alert("Able to log in, but was not able to get user playlists.");
+                });
             })
             .error(function () {
-                alert("There was an error authenticating with Spotify.");
+                alert("There was an error authenticating with Spotify.  Try reloading and logging in again.");
                 $scope.loggedin = false;
+            })
+            .finally(function () {
+                $window.location.href = '/#/';
             });
-        })
-        .error(function () {
-            alert("There was an error authenticating with Spotify.");
+        }
+        else {
             $scope.loggedin = false;
-        });
-    }
-    else {
-        $scope.loggedin = false;
+        }
     }
 
     $scope.isLoading = function (bool) {
@@ -164,8 +176,7 @@ SpotifyRadio.controller('SongsController', function ($scope, $http, $cookies, $c
 
     $scope.login2 = function () {
         var clientId = '23f299b83b5e45c0ad209144ac4e9c5c'; // Your client id
-        var client_secret = '6efc18a526c942d8af4e3ebcdb658957'; // Your secret
-        var redirectUri = 'http://localhost:27784/callback/'; // Your redirect uri
+        var redirectUri = 'http://localhost:27784/'; // Your redirect uri
 
         var params = {
             client_id: clientId,
@@ -175,9 +186,12 @@ SpotifyRadio.controller('SongsController', function ($scope, $http, $cookies, $c
         };
 
         $http({
-            method: 'GET',
+            method: 'POST',
             url: 'https://accounts.spotify.com/authorize?' + toQueryString(params)
-        });
+        })
+            .success(function (data) {
+                
+            });
     };
 
     $scope.saveFavorite = function (favorite) {
@@ -185,21 +199,22 @@ SpotifyRadio.controller('SongsController', function ($scope, $http, $cookies, $c
     };
 });
 
-//SpotifyRadio.controller('MenuController', function MyCtrl($scope) {
-//    $scope.name = 'Spider-Man';
-//});
-
 /* configure routing */
 var configFunction = function ($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'Home/Songs'
         })
+        .when('/:access_token', {
+            controller: 'SongsController',
+            templateUrl: 'Home/Songs'
+        })
         .when('/login', {
             templateUrl: 'Home/Login'
         })
-        .when('/callback/', {
-            templateUrl: 'Home/Callback'
+        .when('/callback', {
+            controller: 'SongsController',
+            templateUrl: 'Home/Songs'
         })
     ;
         
