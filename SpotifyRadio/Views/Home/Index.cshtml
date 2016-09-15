@@ -1,40 +1,71 @@
 ﻿<!DOCTYPE html>
 <html ng-app="SpotifyRadio" ng-controller="SongsController">
-    <head>
-        <title ng-bind="pageTitle"></title>
-        <link href="~/Content/Site.css" rel="stylesheet" />
-        <link rel="icon" href="~/Images/favicon.ico" type="image/x-icon" />
+<head>
+    <title ng-bind="pageTitle"></title>
+    <link rel="icon" type="image/svg" href="~/Images/favicon.ico" />
 
-        <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
-        @Scripts.Render("~/bundles/SpotifyRadio")
-    </head>
-    <body ng-app="ngAnimate">
-        <div id="header">
-            <ul class="header">
-                <!-- add this back at some point -->
-                <li class="header dropdown"><a href="#home" class="dropbtn">
-                    <img src="~/Images/music-icon.png" class="menu" />
-                        <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
-                        </div>
-                    </a>
-                </li>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/Header.css" rel="stylesheet" />
+    <link href="~/Content/Dropdown.css" rel="stylesheet" />
+    <link href="~/Content/Loading.css" rel="stylesheet" />
+    <link href="~/Content/Sliders.css" rel="stylesheet" />
+    <link href="~/Content/Footer.css" rel="stylesheet" />
 
-                <!--<li class="header"><a href="/#" ng-click="switchSongs('Alternative')" class="header">96.5 - The Buzz</a></li>
-                <li class="header"><a href="/#" ng-click="switchSongs('Rock')" class="header">98.9 - The Rock!</a></li>-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-cookies.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+    @Scripts.Render("~/bundles/SpotifyRadio")
+</head>
+<body ng-app="ngAnimate">
+    <div class="header">
+        <ul class="header">
+            <!--<li class="header"><img src="~/Images/hamburger.png" href="/#" class="menu" /></li>-->
+            <li class="dropdown">
+                <a href="#" class="dropbtn">
+                    <img src="~/Images/hamburger.png" href="/#" class="menu" />
+                </a>
+                <div class="dropdown-content">
+                    <div class="dropdown-item">
+                        <div class="header" id="stationHeader">Station</div>
+                        <div class="header" id="favTitle">Fav</div>
+                    </div>
+                    <div class="dropdown-item" ng-repeat="station in stations">
+                        <a href="#" class="header" ng-click="switchSongs(station.Name, station.Id)">
+                            {{station.Name}}
+                        </a>
+                        <label class="switch">
+                            <input type="checkbox" ng-model="station.favorite" ng-checked="station.favorite" ng-change="saveFavorite(station.favorite)">
+                            <div class="slider"></div>
+                        </label>
+                    </div>
+                </div>
+            </li>
+            <li ng-repeat="station in stations" class="header" ng-show="station.favorite">
+                <a href="/#" ng-click="switchSongs(station.Name, station.Id)" class="header">
+                    {{station.Name}}
+                </a>
+            </li>
+            <li style="float:right" class="active header" ng-hide="loggedin"><a class="active" href="home/login">Login To Spotify</a></li>
+            <li style="float:right" class="active header" ng-hide="!loggedin"><a class="active" href="/#">{{username}}</a></li>
+        </ul>
+    </div>
 
-                <li ng-repeat="station in stations" class="header"><a href="/#" ng-click="switchSongs(station.Name, station.Id)" class="header">{{station.Name}}</a></li>
+    <div ng-style="containerStyle" ng-view></div>
 
-                <li style="float:right" class="header"><a href="/#" class="active header" onclick="alert('soon brother')">Login</a></li>
-            </ul>
-        </div>
-        
-        <div id="content" ng-view></div>
+    <div>
+        <input type="hidden" id="access_token" value="@Html.Raw(ViewBag.access_token)"/>
+    </div>
 
-        <div class="footer"><span class="footerContent">Powered by TuneGenie and Spotify.</span></div>
-    </body>
+    <div class="footer">
+        <ul class="footer">
+            <li class="message" ng-hide="!loggedin">{{}}</li>
+            <li class="message" ng-hide="!loggedin">{{}}</li>
+            <li class="message" ng-hide="!loggedin">{{}}</li>
+            <li class="about" ng-hide="!loggedin">Logged in as {{username}}.</li>
+            <li class="about" ng-hide="loggedin">Not logged in.</li>
+        </ul>
+    </div>
+
+</body>
 </html>
