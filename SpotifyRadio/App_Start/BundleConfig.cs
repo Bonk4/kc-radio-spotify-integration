@@ -27,9 +27,8 @@ namespace SpotifyRadio
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/SpotifyRadio")
-                .IncludeDirectory("~/Scripts/Controllers", "*.js")
-                .Include("~/Scripts/SpotifyRadio.js"));
+            bundles.Add(new ScriptBundle("~/bundles/SongApp")
+                .IncludeDirectory("~/songApp", "*.js", true));
         }
     }
 }

@@ -264,9 +264,8 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\Controllers\ListSongsController.js" />
-    <Content Include="Scripts\Controllers\SongsController.js" />
-    <Content Include="Scripts\Controllers\SpotifyRadio.js" />
+    <Content Include="songApp\Controllers\SongsController.js" />
+    <Content Include="songApp\app.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-touch.min.js.map" />
@@ -1055,7 +1054,7 @@
     <None Include="Project_Readme.html" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Songs.cshtml" />
+    <Content Include="songApp\Views\Songs.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <PropertyGroup>

@@ -2,7 +2,7 @@
 <div class="songHeader" ng-hide="errorMessage || loading">Songs Playing on {{currentStation}}:</div>
 <div class="songHeader" ng-hide="!errorMessage">There was an error retrieving recently played songs.  Try reloading.</div>
 
-<img class="spinner" src="~/Images/loading2.png" ng-hide="!loading" />
+<img class="spinner" src="/Images/loading2.png" ng-hide="!loading" />
 
 <div id="songscontainer">
 
@@ -16,7 +16,7 @@
     </div>
 
     <div class="song" data-ng-repeat="i in [1,2,3,4,5,6,7,8,9,10]" ng-hide="!loading">
-        <div id="albumart"><img class="album" src="~/Images/spotify-logo.jpg"></div>
+        <div id="albumart"><img class="album" src="/Images/spotify-logo.jpg"></div>
         <div id="songinfo">
             <p id="track">Loading...</p>
             <p id="artist">Loading...</p>
