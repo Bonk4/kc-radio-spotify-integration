@@ -54,7 +54,7 @@ html {
     
 }
 #addbutton {
-    background-image: url('../Images/plus-icon.png');
+    background-image: url('/Images/plus-icon.png');
     background-size: 100px 100px;
     background-repeat: no-repeat;
     background-color: #4A9130;

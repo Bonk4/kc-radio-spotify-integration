@@ -165,7 +165,6 @@ C:\Code\SpotifyRadio\kc-radio-spotify-integration\SpotifyRadio\bin\Microsoft.Owi
 C:\Code\SpotifyRadio\kc-radio-spotify-integration\SpotifyRadio\bin\Microsoft.Owin.Security.Google.xml
 C:\Code\SpotifyRadio\kc-radio-spotify-integration\SpotifyRadio\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Code\SpotifyRadio\kc-radio-spotify-integration\SpotifyRadio\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Code\SpotifyRadio\kc-radio-spotify-integration\SpotifyRadio\obj\Debug\SpotifyRadio.csprojResolveAssemblyReference.cache
 C:\Code\SpotifyRadio\kc-radio-spotify-integration\SpotifyRadio\obj\Debug\SpotifyRadio.dll
 C:\Code\SpotifyRadio\kc-radio-spotify-integration\SpotifyRadio\obj\Debug\SpotifyRadio.pdb
 C:\Code\Test\SpotifyRadio-Git\kc-radio-spotify-integration\SpotifyRadio\bin\ApplicationInsights.config
